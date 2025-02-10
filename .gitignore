@@ -1,0 +1,5 @@
+data/fineweb10B/
+logs/
+*.out
+wandb/
+env/
