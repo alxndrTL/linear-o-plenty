@@ -174,9 +174,6 @@ class CausalSelfAttention(nn.Module):
         self.rotary = Rotary(d_head, max_seq_len)
         self.c_proj = CastedLinear(hdim, dim)
         self.c_proj.weight.detach().zero_() # zero init suggested by @Grad62304977
-        # scale the attention logits by given constant, instead of the default head_dim**-0.5, by @leloykun
-        # inspired by learnable scalars used by @brendanh0gan https://x.com/hi_tysam/status/1879693583898591283
-        self.attn_scale = 0.12
 
     def forward(self, x: Tensor):
         B, T = x.size(0), x.size(1) # batch size, sequence length
