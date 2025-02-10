@@ -3,3 +3,4 @@ logs/
 *.out
 wandb/
 env/
+__pycache__

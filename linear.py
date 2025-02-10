@@ -39,7 +39,7 @@ def linear_attn_v2(q, k, v):
     mask = torch.triu(torch.ones(chunk_size, chunk_size, dtype=bool, device=q.device), diagonal=1)
     o = torch.zeros_like(q)
     h = torch.zeros(B, H, D, D, device=q.device)
-    for i in range(L // chunk_size):
+    for i in range(L//chunk_size):
         o[:, :, i] = q[:, :, i] @ h + (q[:, :, i] @ k[:, :, i].transpose(-1, -2)).masked_fill_(mask, 0) @ v[:, :, i]
         h = h + k[:, :, i].transpose(-1, -2) @ v[:, :, i]
     
